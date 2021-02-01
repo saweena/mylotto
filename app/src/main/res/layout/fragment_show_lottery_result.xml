@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/drawdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ผลสลากกินแบ่งรัฐบาล"
+                android:textSize="23sp"
+                android:gravity="center"
+                android:paddingBottom="8dp"/>
+
+            <ImageView
+                android:id="@+id/ivNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/stat_notify_error"
+                android:background="@color/green_200"
+                android:visibility="gone"/>
+
+            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+                android:id="@+id/prize1st"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"/>
+
+
+            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+                android:id="@+id/prize2digit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:title_text="เลขท้าย 2 ตัว"
+                app:content_text="55">
+
+
+            </com.example.thailotto2021_1.ui.customview.LotteryCardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+                android:id="@+id/prizeFirst3digit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+                android:id="@+id/prizeLast3digit"
+                android:layout_marginStart="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:title_text="เลขท้าย 2 ตัว"
+                app:content_text="55"
+                />
+        </LinearLayout>
+
+            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+                android:id="@+id/prizeNearBy1st"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"/>
+
+        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            android:id="@+id/prize2rd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"/>
+
+        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            android:id="@+id/prize3rd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"/>
+
+        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            android:id="@+id/prize4rd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"/>
+
+        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            android:id="@+id/prize5rd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+           />
+
+    </LinearLayout>
+    </layout>
+        <!-- TODO: Update blank fragment layout -->
+
+
+

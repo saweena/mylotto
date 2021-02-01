@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "669629277080",
+    "project_id": "thailottery2021-37a45",
+    "storage_bucket": "thailottery2021-37a45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669629277080:android:ad15eec5f65506102481ed",
+        "android_client_info": {
+          "package_name": "com.example.thailotto2021_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669629277080-4hoh4pdo24t1j9552unnn3bfmq29b1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3o7hwHi480UmoHifsgBiCdledWf6owjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669629277080-4hoh4pdo24t1j9552unnn3bfmq29b1l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669629277080:android:0c121312f6eabc222481ed",
+        "android_client_info": {
+          "package_name": "com.example.thailottory2021_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669629277080-4hoh4pdo24t1j9552unnn3bfmq29b1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3o7hwHi480UmoHifsgBiCdledWf6owjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669629277080-4hoh4pdo24t1j9552unnn3bfmq29b1l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

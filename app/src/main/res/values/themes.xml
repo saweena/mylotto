@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ThaiLotto2021_1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_200</item>
+        <item name="colorPrimaryVariant">@color/green_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green_100</item>
+        <item name="colorSecondaryVariant">@color/green_100</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/mitr_regular</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="style_Spinner">
+        <item name="android:background">@drawable/white_rectangle_background</item>
+        <item name="android:dropDownSelector">@android:color/transparent</item>
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:spinnerMode">dropdown</item>
+
+    </style>
+
+    <style name="previousResult_content">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="editText_amount">
+        <item name="android:textSize">23sp</item>
+    </style>
+    <style name="headerInFragment">
+        <item name="android:textSize">30sp</item>
+    </style>
+</resources>

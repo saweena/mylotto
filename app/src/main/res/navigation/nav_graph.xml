@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_qrCodeFragment"
+            app:destination="@id/qrCodeFragment"
+            app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_checkingResultFragment"
+            app:destination="@id/checkingResultFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previousResultFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.PreviousResultFragment.PreviousResultFragment"
+        android:label="PreviousResultFragment" />
+    <fragment
+        android:id="@+id/myLotteryFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.MyLotteryFragment.MyLotteryFragment"
+        android:label="fragment_my_lottery"
+        tools:layout="@layout/fragment_my_lottery" >
+        <action
+            android:id="@+id/action_myLotteryFragment_to_checkingResultFragment"
+            app:destination="@id/checkingResultFragment"
+            app:popUpTo="@id/myLotteryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrCodeFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.QrCodeFragment"
+        android:label="QrCodeFragment" >
+        <action
+            android:id="@+id/action_qrCodeFragment_to_checkingResultFragment"
+            app:destination="@id/checkingResultFragment"
+            app:popUpTo="@id/qrCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkingResultFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.CheckingResultFragment"
+        android:label="CheckingResultFragment" >
+        <argument
+            android:name="userLottery"
+            app:argType="com.example.thailotto2021_1.data.Lottery" />
+    </fragment>
+</navigation>
