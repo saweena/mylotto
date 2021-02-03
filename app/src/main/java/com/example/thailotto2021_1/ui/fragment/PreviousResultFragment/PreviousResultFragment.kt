@@ -13,12 +13,14 @@ import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.databinding.FragmentPreviousResultBinding
 import com.example.thailotto2021_1.ui.fragment.adapter.PreviousResultAdapter
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
+import javax.inject.Inject
 
-class PreviousResultFragment : Fragment() {
+
+class PreviousResultFragment @Inject constructor(val previousResultAdapter : PreviousResultAdapter) : Fragment() {
 
     lateinit var viewModel : MainViewModel
     lateinit var binding : FragmentPreviousResultBinding
-    lateinit var adapter: PreviousResultAdapter
+   // lateinit var adapter: PreviousResultAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,12 +29,10 @@ class PreviousResultFragment : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_previous_result,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        adapter = PreviousResultAdapter()
+        //adapter = PreviousResultAdapter()
 
-        val manager = LinearLayoutManager(requireContext())
-
-        binding.rvPreviousResult.adapter = adapter
-        binding.rvPreviousResult.layoutManager = manager
+        binding.rvPreviousResult.adapter = previousResultAdapter
+        binding.rvPreviousResult.layoutManager = LinearLayoutManager(requireContext())
 
         observeAllLotteryResult()
         return binding.root
@@ -40,7 +40,7 @@ class PreviousResultFragment : Fragment() {
 
     private fun observeAllLotteryResult(){
         viewModel.allLotteryResult.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            previousResultAdapter.submitList(it)
         })
     }
 

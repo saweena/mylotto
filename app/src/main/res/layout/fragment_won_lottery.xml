@@ -17,6 +17,12 @@
         tools:context=".ui.fragment.CheckingResultFragment">
 
         <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_gravity="end"/>
         <TextView
             android:id="@+id/tvDrawDate"
             android:layout_width="wrap_content"

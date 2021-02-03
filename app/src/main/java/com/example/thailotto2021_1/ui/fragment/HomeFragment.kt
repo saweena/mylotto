@@ -20,6 +20,7 @@ import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.firestore.LotteryResult
 import com.example.thailotto2021_1.databinding.FragmentHomeBinding
 import com.example.thailotto2021_1.other.EventObserver
+import com.example.thailotto2021_1.other.Status
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.threeten.bp.LocalDate
@@ -43,21 +44,15 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_home,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        observeAllRewardedLottery()
         observeLotteryResultByDrawDate()
         observeDrawDateListForSpinner()
         observeNavigateCheckingResultFragment()
+        observeInsertStatus()
 
         binding.tvClick.setOnClickListener {
-           // Toast.makeText(this,"$edSingleLottery")
 
             val input = edSingleLottery.text.toString()
-            if(input.length!=6){
-                Toast.makeText(requireContext(),"กรุณาใส่เลข 6 หลัก",Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
             viewModel.checkLottery(input)
-       //     viewModel.onClickOrCheckLottery(userLottery)
 
         }
         binding.ivQr.setOnClickListener {
@@ -92,11 +87,11 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun observeAllRewardedLottery(){
-        viewModel.allLotteryResult.observe(viewLifecycleOwner, Observer {
-
-        })
-    }
+//    private fun observeAllRewardedLottery(){
+//        viewModel.allLotteryResult.observe(viewLifecycleOwner, Observer {
+//
+//        })
+//    }
 
     private fun observeDrawDateListForSpinner(){
         viewModel.listOfSpinner.observe(viewLifecycleOwner, Observer {
@@ -149,6 +144,15 @@ class HomeFragment : Fragment() {
         }
         val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+    }
+
+    private fun observeInsertStatus(){
+        viewModel.insertStatus.observe(viewLifecycleOwner,EventObserver{
+            when(it.status){
+                Status.ERROR -> Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                else -> return@EventObserver
+            }
+        })
     }
 
 

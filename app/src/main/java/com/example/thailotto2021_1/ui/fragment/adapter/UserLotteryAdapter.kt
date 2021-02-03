@@ -50,9 +50,9 @@ class UserLotteryAdapter (val clickListener: LotteryListener)
         CoroutineScope(Dispatchers.Default).launch {
             when (list!!.size) {
                 0 -> {
-//                    withContext(Dispatchers.Main) {
-//                        submitList(emptyList())
-//                    }
+                    withContext(Dispatchers.Main) {
+                        submitList(emptyList())
+                    }
                     return@launch
                 }
                 1 -> {
@@ -123,12 +123,17 @@ class UserLotteryAdapter (val clickListener: LotteryListener)
             else -> throw ClassCastException("Unknown viewType ${viewType}")
         }
     }
+    private var onItemClickListener: ((ViewItem.LotteryItem) -> Unit)? = null
 
+    fun setOnItemClickListener(listener: (ViewItem.LotteryItem) -> Unit) {
+        onItemClickListener = listener
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ViewHolder -> {
                 val lotteryItem = getItem(position) as ViewItem.LotteryItem
                 holder.bind(lotteryItem.lottery,clickListener)
+
             }
             is HeaderDateViewHolder ->{
                 val headerItem = getItem(position) as ViewItem.DateItem

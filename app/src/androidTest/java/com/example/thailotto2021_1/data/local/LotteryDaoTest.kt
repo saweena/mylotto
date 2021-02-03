@@ -7,9 +7,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.example.thailotto2021_1.data.Lottery
 import com.example.thailotto2021_1.getOrAwaitValue
+import com.example.thailotto2021_1.launchFragmentInHiltContainer
+import com.example.thailotto2021_1.ui.fragment.HomeFragment
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -17,25 +21,28 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class LotteryDaoTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: LotteryDatabase
+    @get:Rule
+    var hiltRule =HiltAndroidRule(this)
+
+    @Inject
+    lateinit var database: LotteryDatabase
     private lateinit var dao: LotteryDao
 
     @Before
+    @Named("lottery_db")
     fun setup(){
-        database = Room.inMemoryDatabaseBuilder(
-               ApplicationProvider.getApplicationContext(),
-                LotteryDatabase::class.java
-        ).allowMainThreadQueries().build()
-
+        hiltRule.inject()
         dao = database.getLotteryDao()
     }
 
@@ -43,6 +50,8 @@ class LotteryDaoTest {
     fun teardown(){
         database.close()
     }
+
+
 
     @Test
     fun insertLottery() = runBlockingTest {

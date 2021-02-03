@@ -3,6 +3,7 @@ package com.example.thailotto2021_1.di
 import android.content.Context
 import androidx.room.Room
 import com.example.thailotto2021_1.data.LotteryDataSource
+import com.example.thailotto2021_1.data.firestore.LotteryResultDatabase
 import com.example.thailotto2021_1.data.local.LotteryDao
 import com.example.thailotto2021_1.data.local.LotteryDatabase
 import com.example.thailotto2021_1.data.local.LotteryLocalDataSource
@@ -11,6 +12,10 @@ import com.example.thailotto2021_1.other.Constants
 import com.example.thailotto2021_1.other.Constants.USER_LOTTERY_DB
 import com.example.thailotto2021_1.repository.LotteryRepository
 import com.example.thailotto2021_1.repository.MainRepository
+import com.example.thailotto2021_1.ui.fragment.MyLotteryFragment.MyLotteryFragment
+import com.example.thailotto2021_1.ui.fragment.adapter.LotteryListener
+import com.example.thailotto2021_1.ui.fragment.adapter.PreviousResultAdapter
+import com.example.thailotto2021_1.ui.fragment.adapter.UserLotteryAdapter
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -18,6 +23,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -42,6 +48,12 @@ object AppModule {
     @Provides
     fun provideFirebaseCollection() = FirebaseFirestore.getInstance().collection(Constants.REWARD_LOTTERY_FIRESTORE)
 
+    @Named("firestore")
+    @Singleton
+    @Provides
+    fun provideLotteryResultFirestoreDatasource(firestoreDB : CollectionReference) = LotteryResultDatabase(firestoreDB) as LotteryDataSource
+
+    @Named("localdatabase")
     @Singleton
     @Provides
     fun provideUserLotteryLocalDatasource(dao : LotteryDao) = LotteryLocalDataSource(dao) as LotteryDataSource
@@ -49,7 +61,13 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDefaultMainRepository(
-            userLotteryLocalDataSource: LotteryDataSource,
-            firestore: CollectionReference
-    ) = MainRepository(userLotteryLocalDataSource, firestore) as LotteryRepository
+            @Named("localdatabase")userLotteryLocalDataSource: LotteryDataSource,
+            @Named("firestore") lotteryResultFireStoreDataSource: LotteryDataSource
+    ) = MainRepository(userLotteryLocalDataSource, lotteryResultFireStoreDataSource) as LotteryRepository
+
+    @Singleton
+    @Provides
+    fun providePreviousLotteryResultAdapter() = PreviousResultAdapter()
+
+
 }

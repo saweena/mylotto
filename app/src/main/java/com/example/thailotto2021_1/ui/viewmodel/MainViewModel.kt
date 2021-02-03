@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.example.thailotto2021_1.data.Lottery
 import com.example.thailotto2021_1.data.firestore.LotteryResult
 import com.example.thailotto2021_1.other.Event
+import com.example.thailotto2021_1.other.Resource
 import com.example.thailotto2021_1.repository.LotteryRepository
 import com.google.firebase.firestore.MetadataChanges
 import com.google.firebase.firestore.Query
@@ -20,8 +21,9 @@ class MainViewModel @ViewModelInject constructor(
     val repository : LotteryRepository
 ) : ViewModel() {
 
-    private val _allLotteryResult = MutableLiveData<List<LotteryResult>>()
-    val allLotteryResult : LiveData<List<LotteryResult>> = _allLotteryResult
+    //private val _allLotteryResult = MutableLiveData<List<LotteryResult>>()
+    var allLotteryResult : LiveData<List<LotteryResult>> = repository.getAllLotteryResult()
+
     val fm = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("th","TH"))
             .withChronology(ThaiBuddhistChronology.INSTANCE)
     val listOfSpinner = Transformations.map(allLotteryResult){
@@ -31,14 +33,13 @@ class MainViewModel @ViewModelInject constructor(
         }
         return@map listR
     }
+    private val _insertStatus = MutableLiveData<Event<Resource<Lottery>>>()
+    val insertStatus : LiveData<Event<Resource<Lottery>>> = _insertStatus
 
     private val _lotteryResultByDrawDate = MutableLiveData<LotteryResult>()
     var lotteryResultByDrawDate : LiveData<LotteryResult> = _lotteryResultByDrawDate
 
     private val _checkedResult = MutableLiveData<Event<Unit>>()
-    val checkedResult : LiveData<Event<Unit>> = _checkedResult
-
-    private var singleLotteryByDrawDate : LiveData<Lottery>? = null
 
     private val _navigateToCheckingResultFragment = MutableLiveData<Event<Lottery>>()
     val navigateToCheckingResultFragment : LiveData<Event<Lottery>> = _navigateToCheckingResultFragment
@@ -56,49 +57,35 @@ class MainViewModel @ViewModelInject constructor(
 
     val getAllLottery = repository.getAllLottery()
 
-    fun getAllLotteryResult(){
-        repository.getAllLotteryResult().orderBy("date",Query.Direction.DESCENDING)
-            .addSnapshotListener(MetadataChanges.INCLUDE) { value, error ->
-            if(error!=null){
-                Timber.d(error.message)
-                return@addSnapshotListener
-            }
-
-            val list = value!!.toObjects(LotteryResult::class.java)
-            _allLotteryResult.postValue(list)
-
-        }
-    }
-
-    private fun getLatestLotteryResult(){
-        repository.getAllLotteryResult().orderBy("date", Query.Direction.DESCENDING).limit(1)
-            .addSnapshotListener(MetadataChanges.INCLUDE) { value, error ->
-                if(error!=null){
-                    Timber.d(error.message)
-                    return@addSnapshotListener
-                }
-                val list = value!!.toObjects(LotteryResult::class.java)
-            }
-    }
-
-    fun insertLottery(lottery: Lottery) = viewModelScope.launch {
-        repository.insertLottery(lottery)
-    }
-
-    private fun deleteLottery(lottery: Lottery) = viewModelScope.launch {
-        repository.deleteLottery(lottery)
-    }
-
-//    fun getSingleLotteryByDrawDate(lottery : String,date : Long) : LiveData<Lottery> {
-////        val a = repository.getSingleLotteryByDrawDate(lottery,date)
-////        _singleLotteryByDrawDate.postValue(repository.getSingleLotteryByDrawDate(lottery,date))
-//        return singleLotteryByDrawDate ?: liveData {
-//            emit(repository.getSingleLotteryByDrawDate(lottery,date))
-//        }.also {
-//            singleLotteryByDrawDate = it
+//    fun getAllLotteryResult(){
+//        repository.getAllLotteryResult().orderBy("date",Query.Direction.DESCENDING)
+//            .addSnapshotListener(MetadataChanges.INCLUDE) { value, error ->
+//            if(error!=null){
+//                Timber.d(error.message)
+//                return@addSnapshotListener
+//            }
+//
+//            val list = value!!.toObjects(LotteryResult::class.java)
+//            _allLotteryResult.postValue(list)
+//
 //        }
 //    }
 
+    fun getAllLotteryResult(){
+        allLotteryResult =repository.getAllLotteryResult()
+        Timber.d("start listener")
+    }
+
+
+
+    fun insertLottery(lottery: Lottery) = viewModelScope.launch {
+        repository.insertLottery(lottery)
+        _insertStatus.postValue(Event(Resource.success(lottery)))
+    }
+
+    fun deleteLottery(lottery: Lottery) = viewModelScope.launch {
+        repository.deleteLottery(lottery)
+    }
 
     fun getLotteryResultByDrawDate(thaidate : String){
         val fm2 = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("th","TH"))
@@ -122,25 +109,24 @@ class MainViewModel @ViewModelInject constructor(
             _noDrawNumber.postValue(Event("งวดที่คุณเลือกยังไม่ออก"))
             return
         }else{
-
             _lotteryResultByDrawDate.postValue(a[0])
             checkLottery(userLottery)
         }
 
         Timber.d("งวดที่มี $drawNumber คือ ${a.toString()}")
-        //_lotteryResultByDrawDate.postValue(a?.get(0))
 
-        //Timber.d("all list ${allRewardLottery.value} your result ${a.toString()}")
     }
 
     fun checkLottery(input : String){
+        if(input.length!=6){
+            _insertStatus.postValue(Event(Resource.error("กรุณาใส่เลข 6 หลัก",null)))
+            return
+        }
         val userFirst3digit = input.substring(0,3)
         val userLast3digit = input.substring(3,6)
         val userLast2digit = input.substring(4,6)
 
-
         val prize1st = lotteryResultByDrawDate.value?.prize1st
-
         val nearBy1stPrize = lotteryResultByDrawDate.value?.nearBy1stPrize
         val prizeFirst3Digits = lotteryResultByDrawDate.value?.prizeFirst3Digit
         val prizeLast3Digits = lotteryResultByDrawDate.value?.prizeLast3Digit
@@ -150,11 +136,8 @@ class MainViewModel @ViewModelInject constructor(
         val prize4th = lotteryResultByDrawDate.value?.prize4th
         val prize5th = lotteryResultByDrawDate.value?.prize5th
 
-
         val isWonPrize1st = (prize1st?.contains(input))
-        Timber.d("input = $input ,,, prize1 = $prize1st  so boolean is $isWonPrize1st")
         val isWonNearBy1stPrize = nearBy1stPrize?.contains(input)
-        //Timber.d("${prizeFirst3Digits?.get(0)} ,,,,,${prizeFirst3Digits?.get(1)}")
         val isWonFirst3digit = prizeFirst3Digits?.contains(userFirst3digit)
         val isWonLast3digit = prizeLast3Digits?.contains(userLast3digit)
         val isWonLast2digitPrize = prize2Digits?.contains(userLast2digit)
@@ -164,7 +147,7 @@ class MainViewModel @ViewModelInject constructor(
         val isWonPrize5th = prize5th?.contains(input)
 
         Timber.d("ถูกรางวัลที่ 1? : ${isWonPrize1st.toString()} ,ถูกเลขท้าย? : ${isWonLast2digitPrize.toString()},,รางวัลที่ 2 ?: ${isWonPrize2nd.toString()}")
-        val sb = StringBuilder()
+
         if(lotteryResultByDrawDate.value != null) { val userLottery = Lottery(lotteryResultByDrawDate.value?.date!!,input)
             userLottery.apply {
                 //thai_date = lotteryResultByDrawDate.value?.thai_date!!
@@ -185,32 +168,19 @@ class MainViewModel @ViewModelInject constructor(
 
             insertLottery(userLottery)
 
-            Timber.d(userLottery.totalMoneyReward.toString())
             navigateToCheckResult(userLottery)
-
             }else{
             _emptyLotteryResults.postValue(Event("กรุณาเชื่อมต่ออินเตอร์เน็ต"))
         }
-
-
-    }
-
-    private fun checkWonPrize2to5(input : String,result : List<String>?): Boolean {
-        var isWon : Boolean = false
-        if (result != null) {
-            for( i in result){
-                if(input==i){
-                    isWon =  true
-
-                }
-            }
-        }
-        return isWon
     }
 
     fun navigateToCheckResult(lottery: Lottery) {
         _navigateToCheckingResultFragment.value = Event(lottery)
+    }
 
+    fun stopListeningForLotteryResult(){
+        repository.stopListeningForLotteryResult()
+        Timber.d("stop listener")
     }
 
 

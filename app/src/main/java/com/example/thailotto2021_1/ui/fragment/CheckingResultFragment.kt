@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.thailotto2021_1.R
@@ -33,7 +34,6 @@ class CheckingResultFragment : DialogFragment() {
     lateinit var binding : FragmentWonLotteryBinding
     lateinit var viewModel : MainViewModel
     private val args: CheckingResultFragmentArgs by navArgs()
-   // lateinit var userLottery : Lottery
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +55,11 @@ class CheckingResultFragment : DialogFragment() {
             }
         }
 
+        binding.ivDelete.setOnClickListener {
+            viewModel.deleteLottery(userLottery)
+            findNavController().popBackStack()
+        }
+
         binding.edAmount.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when(actionId){
                 EditorInfo.IME_ACTION_DONE ->{
@@ -68,7 +73,6 @@ class CheckingResultFragment : DialogFragment() {
                 }else -> false
             }
         }
-
         setContent(userLottery)
         return binding.root
     }
@@ -122,12 +126,9 @@ class CheckingResultFragment : DialogFragment() {
             setEditTextAmount(userLottery)
 
         }
-
         binding.tvResult.text = sb.toString()
-
         val total = userLottery.totalMoneyReward*userLottery.amount
         val decim = DecimalFormat("#,###")
-
         val text = "รวมทั้งสิ้น ${decim.format(total)} บาท"
         binding.tvSumReward.text = text
 
@@ -144,7 +145,6 @@ class CheckingResultFragment : DialogFragment() {
 
         viewModel.insertLottery(userLottery)
         setContent(userLottery)
-
 
     }
 
