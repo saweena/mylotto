@@ -29,15 +29,15 @@ class PreviousResultFragmentTest{
         hiltRule.inject()
     }
 
-    @Test
-    fun showCorrectResult(){
-        val navController = mock(NavController::class.java)
-        launchFragmentInHiltContainer<PreviousResultFragment>(fragmentFactory = fragmentFactory) {
-            Navigation.setViewNavController(requireView(),navController)
-            val list = mutableListOf(LotteryResult(1,"64","111111"))
-            previousResultAdapter.submitList(list)
-        }
-
-
-    }
+//    @Test
+//    fun showCorrectResult(){
+//        val navController = mock(NavController::class.java)
+//        launchFragmentInHiltContainer<PreviousResultFragment>(fragmentFactory = fragmentFactory) {
+//            Navigation.setViewNavController(requireView(),navController)
+//            val list = mutableListOf(LotteryResult(1,"64","111111"))
+//            previousResultAdapter.submitList(list)
+//        }
+//
+//
+//    }
 }

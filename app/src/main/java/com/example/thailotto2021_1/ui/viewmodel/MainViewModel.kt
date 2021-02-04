@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.thailotto2021_1.data.Lottery
 import com.example.thailotto2021_1.data.firestore.LotteryResult
+import com.example.thailotto2021_1.other.Constants.CHECK_SINGLE_MODE
 import com.example.thailotto2021_1.other.Event
 import com.example.thailotto2021_1.other.Resource
 import com.example.thailotto2021_1.repository.LotteryRepository
@@ -41,6 +42,9 @@ class MainViewModel @ViewModelInject constructor(
 
     private val _checkedResult = MutableLiveData<Event<Unit>>()
 
+    private val _positionInSpinner = MutableLiveData<Int>()
+    var positionInSpinner : LiveData<Int> = _positionInSpinner
+
     private val _navigateToCheckingResultFragment = MutableLiveData<Event<Lottery>>()
     val navigateToCheckingResultFragment : LiveData<Event<Lottery>> = _navigateToCheckingResultFragment
 
@@ -57,6 +61,10 @@ class MainViewModel @ViewModelInject constructor(
 
     val getAllLottery = repository.getAllLottery()
 
+    val isEmptyResult = Transformations.map(allLotteryResult){
+        it == emptyList<Lottery>()
+    }
+
 //    fun getAllLotteryResult(){
 //        repository.getAllLotteryResult().orderBy("date",Query.Direction.DESCENDING)
 //            .addSnapshotListener(MetadataChanges.INCLUDE) { value, error ->
@@ -70,7 +78,9 @@ class MainViewModel @ViewModelInject constructor(
 //
 //        }
 //    }
-
+    fun savePositionInSpinner(position : Int){
+    _positionInSpinner.postValue(position)
+}
     fun getAllLotteryResult(){
         allLotteryResult =repository.getAllLotteryResult()
         Timber.d("start listener")
@@ -93,7 +103,7 @@ class MainViewModel @ViewModelInject constructor(
         val a = allLotteryResult.value?.filter {
             it.date== LocalDate.parse(thaidate,fm2).toEpochDay() - 198326
         }
-        Timber.d("${a?.get(0)}")
+//        Timber.d("${a?.get(0)}")
         _lotteryResultByDrawDate.postValue(a?.get(0))
 
     }
@@ -110,18 +120,21 @@ class MainViewModel @ViewModelInject constructor(
             return
         }else{
             _lotteryResultByDrawDate.postValue(a[0])
-            checkLottery(userLottery)
+            checkLottery(userLottery,CHECK_SINGLE_MODE)
         }
 
         Timber.d("งวดที่มี $drawNumber คือ ${a.toString()}")
 
     }
 
-    fun checkLottery(input : String){
+    fun checkLottery(input : String,mode : String) : Lottery{
+        Timber.d("mode : $mode")
+        var lottery : Lottery = Lottery(0,"")
         if(input.length!=6){
             _insertStatus.postValue(Event(Resource.error("กรุณาใส่เลข 6 หลัก",null)))
-            return
+            return lottery
         }
+
         val userFirst3digit = input.substring(0,3)
         val userLast3digit = input.substring(3,6)
         val userLast2digit = input.substring(4,6)
@@ -164,14 +177,20 @@ class MainViewModel @ViewModelInject constructor(
                 totalMoneyReward = win1stPrizeReward+win2ndPrizeReward+win3rdPrizeReward+
                         win4thPrizeReward+win5thPrizeReward+winDigitsNearBy1stPrizeReward+
                         winFirst3DigitsPrizeReward+winLast2DigitsPrizeReward+winLast3DigitsPrizeReward
+                lottery = userLottery
             }
 
             insertLottery(userLottery)
 
-            navigateToCheckResult(userLottery)
+            if(mode == CHECK_SINGLE_MODE) {
+                navigateToCheckResult(userLottery)
+            }
+
             }else{
             _emptyLotteryResults.postValue(Event("กรุณาเชื่อมต่ออินเตอร์เน็ต"))
         }
+
+        return lottery
     }
 
     fun navigateToCheckResult(lottery: Lottery) {
@@ -182,6 +201,7 @@ class MainViewModel @ViewModelInject constructor(
         repository.stopListeningForLotteryResult()
         Timber.d("stop listener")
     }
+
 
 
 

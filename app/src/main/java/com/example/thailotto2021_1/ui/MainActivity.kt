@@ -19,6 +19,8 @@ import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.firestore.LotteryResult
 import com.example.thailotto2021_1.databinding.ActivityMainBinding
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.firestore.CollectionReference
@@ -57,7 +59,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-
+//        val adRequest = AdRequest.Builder().build()
+//        binding.adView.loadAd(adRequest)
     }
 
     override fun onStop() {

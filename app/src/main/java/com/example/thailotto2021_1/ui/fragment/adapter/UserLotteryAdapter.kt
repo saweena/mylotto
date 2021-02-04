@@ -41,7 +41,7 @@ sealed class ViewItem () {
 const val ITEM_VIEW_TYPE_HEADER = 0
 const val ITEM_VIEW_TYPE_ITEM = 1
 
-class UserLotteryAdapter (val clickListener: LotteryListener)
+class UserLotteryAdapter ()
     : ListAdapter<ViewItem, RecyclerView.ViewHolder>(LotteryDiffCallback()){
 
 
@@ -132,7 +132,13 @@ class UserLotteryAdapter (val clickListener: LotteryListener)
         when (holder) {
             is ViewHolder -> {
                 val lotteryItem = getItem(position) as ViewItem.LotteryItem
-                holder.bind(lotteryItem.lottery,clickListener)
+                holder.bind(lotteryItem.lottery)
+                holder.itemView.setOnClickListener {
+                    onItemClickListener?.let {click->
+                        click(lotteryItem)
+                    }
+                }
+
 
             }
             is HeaderDateViewHolder ->{
@@ -161,9 +167,10 @@ class UserLotteryAdapter (val clickListener: LotteryListener)
     }
     class ViewHolder(val binding: ItemUserLotteryBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item : Lottery,clickListener: LotteryListener){
-            binding.userLottery =item
-            binding.clickListener = clickListener
+        fun bind(item : Lottery){
+            binding.tvUserLottery.text = item.lottery
+//            binding.userLottery =item
+//            binding.clickListener = clickListener
             if(item.totalMoneyReward==0L){
                 binding.lotteryCard.setCardBackgroundColor(Color.GRAY)
                 binding.tvLotteryAmount.visibility = View.GONE
@@ -194,9 +201,9 @@ class UserLotteryAdapter (val clickListener: LotteryListener)
 
 }
 
-class LotteryListener(val clickListener: (selectedLottery: Lottery) -> Unit) {
-    fun onClick(userLottery: Lottery) = clickListener(userLottery)
-}
+//class LotteryListener(val clickListener: (selectedLottery: Lottery) -> Unit) {
+//    fun onClick(userLottery: Lottery) = clickListener(userLottery)
+//}
 
 
 

@@ -18,6 +18,10 @@
             android:id="@+id/action_homeFragment_to_checkingResultFragment"
             app:destination="@id/checkingResultFragment"
             app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_multiCheckingANDNextDrawCheckingFragment"
+            app:destination="@id/multiCheckingANDNextDrawCheckingFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/previousResultFragment"
@@ -50,4 +54,19 @@
             android:name="userLottery"
             app:argType="com.example.thailotto2021_1.data.Lottery" />
     </fragment>
+    <fragment
+        android:id="@+id/multiCheckingANDNextDrawCheckingFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.MultiCheckingANDNextDrawCheckingFragment"
+        android:label="MultiCheckingANDNextDrawCheckingFragment" >
+        <action
+            android:id="@+id/action_multiCheckingANDNextDrawCheckingFragment_to_checkingResultFragment"
+            app:destination="@id/checkingResultFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/multiCheckingANDNextDrawCheckingFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/trendingFragment"
+        android:name="com.example.thailotto2021_1.ui.fragment.TrendingFragment"
+        android:label="TrendingFragment" />
 </navigation>

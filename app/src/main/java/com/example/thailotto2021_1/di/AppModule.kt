@@ -1,7 +1,12 @@
 package com.example.thailotto2021_1.di
 
 import android.content.Context
+import android.graphics.Color
+import android.widget.ArrayAdapter
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.LotteryDataSource
 import com.example.thailotto2021_1.data.firestore.LotteryResultDatabase
 import com.example.thailotto2021_1.data.local.LotteryDao
@@ -13,7 +18,7 @@ import com.example.thailotto2021_1.other.Constants.USER_LOTTERY_DB
 import com.example.thailotto2021_1.repository.LotteryRepository
 import com.example.thailotto2021_1.repository.MainRepository
 import com.example.thailotto2021_1.ui.fragment.MyLotteryFragment.MyLotteryFragment
-import com.example.thailotto2021_1.ui.fragment.adapter.LotteryListener
+
 import com.example.thailotto2021_1.ui.fragment.adapter.PreviousResultAdapter
 import com.example.thailotto2021_1.ui.fragment.adapter.UserLotteryAdapter
 import com.google.firebase.firestore.CollectionReference
@@ -65,9 +70,27 @@ object AppModule {
             @Named("firestore") lotteryResultFireStoreDataSource: LotteryDataSource
     ) = MainRepository(userLotteryLocalDataSource, lotteryResultFireStoreDataSource) as LotteryRepository
 
+    @Named("previousResult")
     @Singleton
     @Provides
     fun providePreviousLotteryResultAdapter() = PreviousResultAdapter()
+
+    @Named("userLottery")
+    @Singleton
+    @Provides
+    fun provideUserLotteryAdapter() = UserLotteryAdapter()
+
+    @Singleton
+    @Provides
+    fun providesGlide(@ApplicationContext app : Context) =
+        Glide.with(app).setDefaultRequestOptions(
+         RequestOptions()
+             .placeholder(R.color.black)
+             .error(R.color.black)
+
+
+
+    )
 
 
 }

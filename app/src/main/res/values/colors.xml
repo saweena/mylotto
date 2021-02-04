@@ -12,6 +12,7 @@
     <color name="accent">#EDECEC</color>
     <color name="background">#A5D6A7</color>
     <color name="pink_100">#F8BBD0</color>
+    <color name="red">#F80000</color>
 
 
 </resources>

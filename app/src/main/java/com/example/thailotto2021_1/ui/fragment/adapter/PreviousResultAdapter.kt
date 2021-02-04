@@ -16,7 +16,7 @@ import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
 class PreviousResultAdapter : ListAdapter<LotteryResult,PreviousResultAdapter.Vholder>(LotteryResultDiffCallback()) {
-    class Vholder(val binding : ItemRecyclerviewDigitBinding) : RecyclerView.ViewHolder(binding.root){
+     class Vholder(val binding : ItemRecyclerviewDigitBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item : LotteryResult){
             binding.lotteryResult = item
 

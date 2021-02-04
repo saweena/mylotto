@@ -5,12 +5,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable
-            name="userLottery"
-            type="com.example.thailotto2021_1.data.Lottery" />
-        <variable
-            name="clickListener"
-            type="com.example.thailotto2021_1.ui.fragment.adapter.LotteryListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -21,7 +15,9 @@
         app:cardBackgroundColor="@color/green_200"
         app:cardCornerRadius="6dp"
         app:cardElevation="6dp"
-        android:onClick="@{()->clickListener.onClick(userLottery)}">
+        >
+<!--        android:onClick="@{()->clickListener.onClick(userLottery)}"-->
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -36,13 +32,12 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 tools:text="123456"
-                android:text="@{userLottery.lottery}"
                 android:textSize="23sp"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
+<!--            android:text="@{userLottery.lottery}"-->
             <TextView
                 android:id="@+id/tvLotteryAmount"
                 android:layout_width="wrap_content"

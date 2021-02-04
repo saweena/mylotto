@@ -19,6 +19,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.firestore.LotteryResult
 import com.example.thailotto2021_1.databinding.FragmentHomeBinding
+import com.example.thailotto2021_1.other.Constants
+import com.example.thailotto2021_1.other.Constants.CHECK_SINGLE_MODE
 import com.example.thailotto2021_1.other.EventObserver
 import com.example.thailotto2021_1.other.Status
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         observeLotteryResultByDrawDate()
+        //observeEmptyList()
         observeDrawDateListForSpinner()
         observeNavigateCheckingResultFragment()
         observeInsertStatus()
@@ -52,11 +55,15 @@ class HomeFragment : Fragment() {
         binding.tvClick.setOnClickListener {
 
             val input = edSingleLottery.text.toString()
-            viewModel.checkLottery(input)
+            viewModel.checkLottery(input,CHECK_SINGLE_MODE)
 
         }
         binding.ivQr.setOnClickListener {
            findNavController().navigate(R.id.action_homeFragment_to_qrCodeFragment)
+        }
+
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_multiCheckingANDNextDrawCheckingFragment)
         }
 
         binding.edSingleLottery.setOnEditorActionListener { v, actionId, event ->
@@ -66,7 +73,7 @@ class HomeFragment : Fragment() {
                         Toast.makeText(requireContext(),"กรุณาใส่เลข 6 หลัก",Toast.LENGTH_LONG).show()
                         true
                     }else{
-                        viewModel.checkLottery(v.text.toString())
+                        viewModel.checkLottery(v.text.toString(),CHECK_SINGLE_MODE)
                         hideSoftKeyboard(requireActivity())
                         true
                     }
@@ -100,11 +107,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setSpinner(list : MutableList<String>) {
+
         ArrayAdapter(requireContext(),R.layout.row_spinner,list).also {
                 adapter ->
             adapter.setDropDownViewResource(R.layout.row_spinners_dropdown)
 
             binding.spinner.adapter = adapter
+
             binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -126,9 +135,18 @@ class HomeFragment : Fragment() {
     private fun observeLotteryResultByDrawDate(){
         viewModel.lotteryResultByDrawDate.observe(viewLifecycleOwner, Observer {
             lotteryResultByDrawDate = it
-
         })
     }
+
+//    private fun observeEmptyList(){
+//        viewModel.isEmptyResult.observe(viewLifecycleOwner, Observer {
+//            if(it){
+//                binding.ivEmptyList.visibility = View.VISIBLE
+//            }else{
+//                binding.ivEmptyList.visibility = View.GONE
+//            }
+//        })
+//    }
 
     private fun observeNavigateCheckingResultFragment() {
         viewModel.navigateToCheckingResultFragment.observe(viewLifecycleOwner, EventObserver {

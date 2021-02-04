@@ -32,4 +32,10 @@
     <style name="headerInFragment">
         <item name="android:textSize">30sp</item>
     </style>
+
+    <style name="saveLottoryForCheck">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/white_rectangle_background</item>
+        <item name="android:padding">16dp</item>
+    </style>
 </resources>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/accent"
+        tools:context=".ui.fragment.MultiCheckingANDNextDrawCheckingFragment"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="งวด"
+                android:paddingEnd="16dp"
+                android:textSize="20sp"/>
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="กรอกเลข 6 หลัก"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edPosition1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle_background"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:maxLength="6"/>
+
+            <TextView
+                android:id="@+id/tvNotWon1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:text="ไม่ถูกรางวัล"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvClickForDetail1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/green_200"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:text="ถูกรางวัล! กดเพื่อดูรางละเอียด"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edPosition2"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle_background"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:maxLength="6"/>
+
+            <TextView
+                android:id="@+id/tvNotWon2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:text="ไม่ถูกรางวัล"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvClickForDetail2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/green_200"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:text="ถูกรางวัล! กดเพื่อดูรางละเอียด"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edPosition3"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle_background"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:maxLength="6"/>
+
+            <TextView
+                android:id="@+id/tvNotWon3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:text="ไม่ถูกรางวัล"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvClickForDetail3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/green_200"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:text="ถูกรางวัล! กดเพื่อดูรางละเอียด"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edPosition4"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle_background"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:maxLength="6"/>
+
+            <TextView
+                android:id="@+id/tvNotWon4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:text="ไม่ถูกรางวัล"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvClickForDetail4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/green_200"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:text="ถูกรางวัล! กดเพื่อดูรางละเอียด"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edPosition5"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/white_rectangle_background"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:maxLength="6"/>
+
+            <TextView
+                android:id="@+id/tvNotWon5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:text="ไม่ถูกรางวัล"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvClickForDetail5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/green_200"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:text="ถูกรางวัล! กดเพื่อดูรายละเอียด"/>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvClearForm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ลบทั้งหมด"
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:background="@drawable/cardview_show_detail"
+                android:clickable="true"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvClickCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ตรวจผล!"
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:background="@drawable/cardview_show_detail"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:paddingTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="กรอกเลขสลากเพื่อรอตรวจในงวดถัดไป (สูงสุด 5 เลข) แล้วกด 'บันทึก' เมื่อถึงเวลาที่ต้องการตรวจผล ให้กด 'แสดง' แล้วกด 'ตรวจผล'"
+             />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvSavedLottery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/saveLottoryForCheck"
+                android:text="บันทึก"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRestoreSavedLottery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="แสดง"
+                style="@style/saveLottoryForCheck"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+    </LinearLayout>
+</layout>

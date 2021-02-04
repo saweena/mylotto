@@ -21,6 +21,7 @@ import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.Lottery
 import com.example.thailotto2021_1.databinding.FragmentWonLotteryBinding
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
+import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.fragment_won_lottery.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.chrono.ThaiBuddhistChronology
@@ -43,8 +44,11 @@ class CheckingResultFragment : DialogFragment() {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_won_lottery,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         val userLottery  = args.userLottery
-        binding.ivMoney.visibility = INVISIBLE
+       // binding.ivMoney.visibility = INVISIBLE
         binding.linearAmount.visibility = GONE
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         binding.ivAmountConfirm.setOnClickListener {
             
@@ -120,8 +124,9 @@ class CheckingResultFragment : DialogFragment() {
         }
 
         if(userLottery.totalMoneyReward!=0L){
-            binding.ivMoney.visibility = VISIBLE
-            Glide.with(this).load(R.drawable.money).into(binding.ivMoney)
+        //    binding.ivMoney.visibility = VISIBLE
+           // Glide.with(this).load(R.drawable.money).into(binding.ivMoney)
+         //   binding.ivMoney.setImageResource(R.drawable.money)
             binding.linearAmount.visibility = VISIBLE
             setEditTextAmount(userLottery)
 

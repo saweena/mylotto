@@ -39,7 +39,10 @@ android {
     }
     buildFeatures {
         dataBinding true
+
     }
+
+
 }
 
 dependencies {
@@ -49,9 +52,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    //firestore
     implementation 'com.google.firebase:firebase-firestore-ktx:22.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
+
+    //firestore cloud starage
+    implementation 'com.google.firebase:firebase-storage-ktx:19.2.1'
     //testImplementation 'junit:junit:4.+'
     //androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -115,10 +123,18 @@ dependencies {
     //EasyPermission
     implementation 'pub.devrel:easypermissions:3.0.0'
 
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha04"
+
     //crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.1'
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.2'
 
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+
+    implementation 'com.google.firebase:firebase-messaging-ktx:21.0.1'
+    implementation 'com.google.android.gms:play-services-basement:17.6.0'
     // Local Unit Tests
     implementation "androidx.test:core:1.2.0"
     testImplementation "junit:junit:4.13"

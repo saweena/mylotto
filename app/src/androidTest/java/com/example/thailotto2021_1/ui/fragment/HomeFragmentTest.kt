@@ -1,39 +1,64 @@
 package com.example.thailotto2021_1.ui.fragment
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.MediumTest
 import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.data.Lottery
+import com.example.thailotto2021_1.getOrAwaitValue
 import com.example.thailotto2021_1.launchFragmentInHiltContainer
+import com.example.thailotto2021_1.repository.FakeRepositoryAndroidTest
+import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.hamcrest.CoreMatchers.*
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
+import com.google.common.truth.Truth.assertThat
+import org.hamcrest.CoreMatchers.anything
+import org.hamcrest.CoreMatchers.containsString
 
 @MediumTest
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
 class HomeFragmentTest{
+
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setup(){
         hiltRule.inject()
     }
+
+//    @Test
+//    fun clickCheckResult_userLotteryInsertedToDB(){
+//        val testViewModel = MainViewModel(FakeRepositoryAndroidTest())
+//        launchFragmentInHiltContainer<HomeFragment> {
+//            viewModel = testViewModel
+//            viewModel.getLotteryResultByDrawDate("17 มกราคม 2564")
+//        }
+//
+//        onView(withId(R.id.edSingleLottery)).perform(replaceText("111111"))
+//        onView(withId(R.id.spinner)).perform(click())
+//        onData(anything()).atPosition(0).perform(click())
+//        onView(withId(R.id.spinner)).check(matches(withSpinnerText(containsString("17 มกราคม 2564"))))
+////        onView(withId(R.id.tvClick)).perform(click())
+////
+////        assertThat(testViewModel.getAllLottery.getOrAwaitValue()).contains(Lottery(18644,"111111"))
+//    }
 
     @Test
     fun clickCheckResult_navigateTo_CheckingResultFragment(){

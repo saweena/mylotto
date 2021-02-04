@@ -44,7 +44,7 @@ class QrCodeFragment : Fragment(),EasyPermissions.PermissionCallbacks {
         codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
         codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
         // ex. listOf(BarcodeFormat.QR_CODE)
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
+        codeScanner.autoFocusMode = AutoFocusMode.CONTINUOUS // or CONTINUOUS
         codeScanner.scanMode = ScanMode.CONTINUOUS // or CONTINUOUS or PREVIEW
         codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
         codeScanner.isFlashEnabled = false // Whether to enable flash or not

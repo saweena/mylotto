@@ -13,10 +13,12 @@ import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.databinding.FragmentPreviousResultBinding
 import com.example.thailotto2021_1.ui.fragment.adapter.PreviousResultAdapter
 import com.example.thailotto2021_1.ui.viewmodel.MainViewModel
+import com.google.android.gms.ads.AdRequest
 import javax.inject.Inject
+import javax.inject.Named
 
 
-class PreviousResultFragment @Inject constructor(val previousResultAdapter : PreviousResultAdapter) : Fragment() {
+class PreviousResultFragment @Inject constructor( @Named("previousResult") val previousResultAdapter : PreviousResultAdapter) : Fragment() {
 
     lateinit var viewModel : MainViewModel
     lateinit var binding : FragmentPreviousResultBinding
@@ -29,6 +31,8 @@ class PreviousResultFragment @Inject constructor(val previousResultAdapter : Pre
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_previous_result,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
+       val adRequest = AdRequest.Builder().build()
+       binding.adView.loadAd(adRequest)
         //adapter = PreviousResultAdapter()
 
         binding.rvPreviousResult.adapter = previousResultAdapter

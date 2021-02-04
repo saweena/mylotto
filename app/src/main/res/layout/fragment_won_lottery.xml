@@ -17,6 +17,7 @@
         tools:context=".ui.fragment.CheckingResultFragment">
 
         <!-- TODO: Update blank fragment layout -->
+
         <ImageView
             android:id="@+id/ivDelete"
             android:layout_width="wrap_content"
@@ -94,12 +95,29 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             tools:text="1000 บาท"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center">
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
 
-        <ImageView
-            android:id="@+id/ivMoney"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"/>
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/ivMoney"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="invisible"/>-->
 
     </LinearLayout>
 </layout>

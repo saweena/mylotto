@@ -3,15 +3,24 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_search"
-        android:title="ตรวจสลาก"/>
+        android:title="ตรวจสลาก"
+
+        />
 
     <item
         android:id="@+id/previousResultFragment"
         android:icon="@drawable/ic_history"
-        android:title="เลขท้ายย้อนหลัง"/>
+        android:title="เลขย้อนหลัง"/>
 
     <item
         android:id="@+id/myLotteryFragment"
         android:icon="@drawable/ic_mylotto"
         android:title="ผลตรวจสลาก"/>
+
+    <item
+        android:id="@+id/trendingFragment"
+        android:icon="@drawable/ic_star"
+        android:title="เลขเด็ด"/>
+
+   
 </menu>
