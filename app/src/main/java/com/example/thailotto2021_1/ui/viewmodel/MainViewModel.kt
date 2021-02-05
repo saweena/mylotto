@@ -10,6 +10,7 @@ import com.example.thailotto2021_1.other.Resource
 import com.example.thailotto2021_1.repository.LotteryRepository
 import com.google.firebase.firestore.MetadataChanges
 import com.google.firebase.firestore.Query
+import com.google.firebase.messaging.RemoteMessage
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
 import org.threeten.bp.chrono.ThaiBuddhistChronology
@@ -36,6 +37,9 @@ class MainViewModel @ViewModelInject constructor(
     }
     private val _insertStatus = MutableLiveData<Event<Resource<Lottery>>>()
     val insertStatus : LiveData<Event<Resource<Lottery>>> = _insertStatus
+
+    private val _notificationContent = MutableLiveData<Event<RemoteMessage>>()
+    val notificationContent : LiveData<Event<RemoteMessage>> = _notificationContent
 
     private val _lotteryResultByDrawDate = MutableLiveData<LotteryResult>()
     var lotteryResultByDrawDate : LiveData<LotteryResult> = _lotteryResultByDrawDate
@@ -78,6 +82,9 @@ class MainViewModel @ViewModelInject constructor(
 //
 //        }
 //    }
+    fun setNotificationContent(content : RemoteMessage){
+    _notificationContent.postValue(Event(content))
+}
     fun savePositionInSpinner(position : Int){
     _positionInSpinner.postValue(position)
 }
