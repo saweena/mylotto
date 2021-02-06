@@ -24,8 +24,16 @@
     </style>
 
     <style name="previousResult_content">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="previousResult_title">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="editText_amount">
         <item name="android:textSize">23sp</item>
     </style>
@@ -37,5 +45,10 @@
         <item name="android:textSize">20sp</item>
         <item name="android:background">@drawable/white_rectangle_background</item>
         <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:statusBarColor">@color/green_200</item>
     </style>
 </resources>

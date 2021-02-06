@@ -1,6 +1,7 @@
 package com.example.thailotto2021_1.data
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
@@ -8,6 +9,7 @@ import java.sql.Struct
 
 @Entity(tableName = "user_lottery_table",primaryKeys = ["draw_date", "lottery"])
 @Parcelize
+@Keep
 data class Lottery(
     var draw_date : Long,
     var lottery : String,

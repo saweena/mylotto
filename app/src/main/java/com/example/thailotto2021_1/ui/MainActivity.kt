@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportFragmentManager.fragmentFactory = lotteryFragmentFactory
+        setTheme(R.style.Theme_ThaiLotto2021_1)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)

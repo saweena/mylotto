@@ -1,9 +1,10 @@
 package com.example.thailotto2021_1.data.firestore
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.android.parcel.Parcelize
 
-
+@Keep
 data class LotteryResult(
     val date : Long = 0,
     val drawNumber : String = "",

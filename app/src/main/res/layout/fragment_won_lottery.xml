@@ -7,117 +7,151 @@
 
     </data>
 
-    <LinearLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="16dp"
-        tools:context=".ui.fragment.CheckingResultFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-
-        <ImageView
-            android:id="@+id/ivDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete"
-            android:layout_gravity="end"/>
-        <TextView
-            android:id="@+id/tvDrawDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="35sp"
-            tools:text="1 มกราคม 2563"
-            android:padding="16dp"/>
-
-        <TextView
-            android:padding="32dp"
-            android:id="@+id/tvLottery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:background="@drawable/cardview_show_detail"
-            tools:text="123456"/>
-
-        <TextView
-            android:id="@+id/tvResult"
-            android:paddingTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="ถูกรางวัลที่ 1"
-            android:textSize="25sp"
-            android:gravity="center"/>
-
-        <LinearLayout
-            android:id="@+id/linearAmount"
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:visibility="gone">
-            <TextView
-                android:id="@+id/tvAmount"
-                style="@style/editText_amount"
-                android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="จำนวน"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp"
+                tools:context=".ui.fragment.CheckingResultFragment">
 
-            <EditText
-                android:id="@+id/edAmount"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:imeOptions = "actionDone"
-                style="@style/editText_amount"
-                android:inputType="number"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
+                <!-- TODO: Update blank fragment layout -->
 
-                />
-            <ImageView
-                android:id="@+id/ivAmountConfirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_check"
-                android:clickable="true"
-                android:focusable="true" />
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_delete" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvDrawDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="30sp"
+                    tools:text="1 มกราคม 2563" />
 
-        <TextView
-            android:id="@+id/tvSumReward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            tools:text="1000 บาท"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="bottom|center">
+                <TextView
+                    android:id="@+id/tvLottery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cardview_show_detail"
+                    android:padding="32dp"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    tools:text="123456" />
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="16dp"
+                    android:textSize="25sp"
+                    tools:text="ถูกรางวัลที่ 1" />
+
+                <LinearLayout
+                    android:id="@+id/linearAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvAmount"
+                        style="@style/editText_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="จำนวน" />
+
+                    <EditText
+                        android:id="@+id/edAmount"
+                        style="@style/editText_amount"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvBai"
+                        style="@style/editText_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ใบ" />
+
+                    <ImageView
+                        android:id="@+id/ivAmountConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_check" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSumReward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    tools:text="1000 บาท" />
+
+                <ImageView
+                    android:id="@+id/ivMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:src="@drawable/won" />
+
+                <TextView
+                    android:id="@+id/tvSponsor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/freepik"
+                    android:textColor="#ACABAB"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-
             app:adSize="BANNER"
             app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    </LinearLayout>
-<!--        <ImageView-->
-<!--            android:id="@+id/ivMoney"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:visibility="invisible"/>-->
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
