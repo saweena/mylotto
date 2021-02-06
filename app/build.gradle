@@ -121,6 +121,9 @@ dependencies {
     //Qrcode
     implementation 'com.budiyev.android:code-scanner:2.1.0'
 
+    //Photoview
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+
     //EasyPermission
     implementation 'pub.devrel:easypermissions:3.0.0'
 

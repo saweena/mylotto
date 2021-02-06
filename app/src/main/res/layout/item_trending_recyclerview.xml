@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/ivTrending"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="650dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/money"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
