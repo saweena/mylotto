@@ -94,6 +94,11 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        binding.edSingleLottery.text.clear()
+    }
+
 //    private fun observeAllRewardedLottery(){
 //        viewModel.allLotteryResult.observe(viewLifecycleOwner, Observer {
 //

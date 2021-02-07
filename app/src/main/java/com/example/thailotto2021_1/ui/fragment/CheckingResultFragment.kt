@@ -46,8 +46,8 @@ class CheckingResultFragment : DialogFragment() {
         val userLottery  = args.userLottery
        // binding.ivMoney.visibility = INVISIBLE
         binding.linearAmount.visibility = GONE
-        binding.ivMoney.visibility = GONE
-        binding.tvSponsor.visibility = GONE
+        //binding.ivMoney.visibility = GONE
+
 
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
@@ -126,8 +126,8 @@ class CheckingResultFragment : DialogFragment() {
         }
 
         if(userLottery.totalMoneyReward!=0L){
-            binding.ivMoney.visibility = VISIBLE
-            binding.tvSponsor.visibility = VISIBLE
+            //binding.ivMoney.visibility = VISIBLE
+
            // Glide.with(this).load(R.drawable.money).into(binding.ivMoney)
          //   binding.ivMoney.setImageResource(R.drawable.money)
             binding.linearAmount.visibility = VISIBLE

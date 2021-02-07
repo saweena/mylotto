@@ -43,6 +43,7 @@
                     android:id="@+id/tvDrawDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:padding="16dp"
                     android:textSize="30sp"
                     tools:text="1 มกราคม 2563" />
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="16dp"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     tools:text="ถูกรางวัลที่ 1" />
 
                 <LinearLayout
@@ -118,22 +119,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
+                    android:gravity="center"
                     tools:text="1000 บาท" />
 
-                <ImageView
-                    android:id="@+id/ivMoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="250dp"
-                    android:src="@drawable/won" />
 
-                <TextView
-                    android:id="@+id/tvSponsor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/freepik"
-                    android:textColor="#ACABAB"
-                    android:textSize="12sp" />
+
+
 
 
             </LinearLayout>
@@ -146,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:adUnitId="ca-app-pub-4885778180675690/3738954320"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ThaiLotto2021_1</string>
+    <string name="app_name">ตรวจหวย รวยๆ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_previosResultFragment">เลขท้ายย้อนหลัง</string>
-    <string name="appName">ตรวจหวย 2021</string>
+    <string name="appName">ตรวจหวย</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="freepik">Logo vector created by catalyststuff - www.freepik.com</string>

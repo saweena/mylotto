@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.databinding.FragmentMyLotteryBinding
 import com.example.thailotto2021_1.other.EventObserver
@@ -62,6 +64,7 @@ class MyLotteryFragment @Inject constructor(@Named("userLottery") val userLotter
                 else -> 1
             }
         }
+
         binding.rvUserLottery.layoutManager = manager
         userLotteryAdapter.setOnItemClickListener {
             viewModel.navigateToCheckResult(it.lottery)

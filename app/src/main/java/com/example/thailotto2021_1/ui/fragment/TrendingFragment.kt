@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.thailotto2021_1.R
 import com.example.thailotto2021_1.databinding.FragmentTrendingBinding
 import com.example.thailotto2021_1.databinding.FragmentWonLotteryBinding
@@ -35,6 +36,7 @@ class TrendingFragment @Inject constructor(val trendingAdapter : TrendingImageAd
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_trending, container, false)
         binding.rvTrending.adapter = trendingAdapter
         binding.rvTrending.layoutManager = LinearLayoutManager(requireContext())
+//        binding.rvTrending.layoutManager = StaggeredGridLayoutManager(1,LinearLayoutManager.VERTICAL)
         firebaseStorage = Firebase.storage.reference
 
 
