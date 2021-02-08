@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -50,11 +48,16 @@ class MultiCheckingANDNextDrawCheckingFragment : BottomSheetDialogFragment() {
         Timber.d("onCreateView")
 
         binding.tvClickCheck.setOnClickListener {
-            setupEditText1()
-            setupEditText2()
-            setupEditText3()
-            setupEditText4()
-            setupEditText5()
+            //setupEditText1()
+            userLottery1 = setupEditGroup(binding.edPosition1,binding.tvNotWon1,binding.tvClickForDetail1)
+            userLottery2 = setupEditGroup(binding.edPosition2,binding.tvNotWon2,binding.tvClickForDetail2)
+            userLottery3 = setupEditGroup(binding.edPosition3,binding.tvNotWon3,binding.tvClickForDetail3)
+            userLottery4 = setupEditGroup(binding.edPosition4,binding.tvNotWon4,binding.tvClickForDetail4)
+            userLottery5 = setupEditGroup(binding.edPosition5,binding.tvNotWon5,binding.tvClickForDetail5)
+//            setupEditText2()
+//            setupEditText3()
+//            setupEditText4()
+//            setupEditText5()
         }
 
         binding.tvClearForm.setOnClickListener {
@@ -123,78 +126,94 @@ class MultiCheckingANDNextDrawCheckingFragment : BottomSheetDialogFragment() {
         binding.tvNotWon4.visibility = View.GONE
         binding.tvNotWon5.visibility = View.GONE
     }
+    private fun setupEditGroup(edPosition : EditText, tvNotWon : TextView, tvClickView : View) : Lottery{
+        var userLottery = Lottery(0,"")
+        if (edPosition.text.length==6){
+            userLottery = viewModel.checkLottery(edPosition.text.toString(),CHECK_MULTI_MODE)
 
-    private fun setupEditText1(){
-            if (binding.edPosition1.text.length==6){
-                userLottery1 = viewModel.checkLottery(binding.edPosition1.text.toString(),CHECK_MULTI_MODE)
-                Timber.d("isWon ??? $userLottery1")
-                if(userLottery1.totalMoneyReward!=0L){
+            if(userLottery.totalMoneyReward!=0L){
 
-                    binding.tvClickForDetail1.visibility = View.VISIBLE
-                    binding.tvNotWon1.visibility = View.GONE
-                }else{
-                    binding.tvClickForDetail1.visibility = View.GONE
-                    binding.tvNotWon1.visibility = View.VISIBLE
-                }
-            }
-    }
-
-    private fun setupEditText2(){
-        if (binding.edPosition2.text.length==6){
-            userLottery2 = viewModel.checkLottery(binding.edPosition2.text.toString(),CHECK_MULTI_MODE)
-            Timber.d("isWon ??? $userLottery1")
-            if(userLottery2.totalMoneyReward!=0L){
-
-                binding.tvClickForDetail2.visibility = View.VISIBLE
-                binding.tvNotWon2.visibility = View.GONE
+                tvClickView.visibility = View.VISIBLE
+                tvNotWon.visibility = View.GONE
             }else{
-                binding.tvClickForDetail2.visibility = View.GONE
-                binding.tvNotWon2.visibility = View.VISIBLE
+                tvClickView.visibility = View.GONE
+                tvNotWon.visibility = View.VISIBLE
             }
         }
+        return userLottery
     }
 
-    private fun setupEditText3(){
-        if (binding.edPosition3.text.length==6){
-            userLottery3 = viewModel.checkLottery(binding.edPosition3.text.toString(),CHECK_MULTI_MODE)
-            if(userLottery3.totalMoneyReward!=0L){
-
-                binding.tvClickForDetail3.visibility = View.VISIBLE
-                binding.tvNotWon3.visibility = View.GONE
-            }else{
-                binding.tvClickForDetail3.visibility = View.GONE
-                binding.tvNotWon3.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun setupEditText4(){
-        if (binding.edPosition4.text.length==6){
-            userLottery4 = viewModel.checkLottery(binding.edPosition4.text.toString(),CHECK_MULTI_MODE)
-            if(userLottery4.totalMoneyReward!=0L){
-
-                binding.tvClickForDetail4.visibility = View.VISIBLE
-                binding.tvNotWon4.visibility = View.GONE
-            }else{
-                binding.tvClickForDetail4.visibility = View.GONE
-                binding.tvNotWon4.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun setupEditText5(){
-        if (binding.edPosition5.text.length==6){
-            userLottery5 = viewModel.checkLottery(binding.edPosition5.text.toString(),CHECK_MULTI_MODE)
-            if(userLottery5.totalMoneyReward!=0L){
-
-                binding.tvClickForDetail5.visibility = View.VISIBLE
-                binding.tvNotWon5.visibility = View.GONE
-            }else{
-                binding.tvClickForDetail5.visibility = View.GONE
-                binding.tvNotWon5.visibility = View.VISIBLE
-            }
-        }
-    }
+//    private fun setupEditText1(){
+//            if (binding.edPosition1.text.length==6){
+//                userLottery1 = viewModel.checkLottery(binding.edPosition1.text.toString(),CHECK_MULTI_MODE)
+//                Timber.d("isWon ??? $userLottery1")
+//                if(userLottery1.totalMoneyReward!=0L){
+//
+//                    binding.tvClickForDetail1.visibility = View.VISIBLE
+//                    binding.tvNotWon1.visibility = View.GONE
+//                }else{
+//                    binding.tvClickForDetail1.visibility = View.GONE
+//                    binding.tvNotWon1.visibility = View.VISIBLE
+//                }
+//            }
+//    }
+//
+//    private fun setupEditText2(){
+//        if (binding.edPosition2.text.length==6){
+//            userLottery2 = viewModel.checkLottery(binding.edPosition2.text.toString(),CHECK_MULTI_MODE)
+//            Timber.d("isWon ??? $userLottery1")
+//            if(userLottery2.totalMoneyReward!=0L){
+//
+//                binding.tvClickForDetail2.visibility = View.VISIBLE
+//                binding.tvNotWon2.visibility = View.GONE
+//            }else{
+//                binding.tvClickForDetail2.visibility = View.GONE
+//                binding.tvNotWon2.visibility = View.VISIBLE
+//            }
+//        }
+//    }
+//
+//    private fun setupEditText3(){
+//        if (binding.edPosition3.text.length==6){
+//            userLottery3 = viewModel.checkLottery(binding.edPosition3.text.toString(),CHECK_MULTI_MODE)
+//            if(userLottery3.totalMoneyReward!=0L){
+//
+//                binding.tvClickForDetail3.visibility = View.VISIBLE
+//                binding.tvNotWon3.visibility = View.GONE
+//            }else{
+//                binding.tvClickForDetail3.visibility = View.GONE
+//                binding.tvNotWon3.visibility = View.VISIBLE
+//            }
+//        }
+//    }
+//
+//    private fun setupEditText4(){
+//        if (binding.edPosition4.text.length==6){
+//            userLottery4 = viewModel.checkLottery(binding.edPosition4.text.toString(),CHECK_MULTI_MODE)
+//            if(userLottery4.totalMoneyReward!=0L){
+//
+//                binding.tvClickForDetail4.visibility = View.VISIBLE
+//                binding.tvNotWon4.visibility = View.GONE
+//            }else{
+//                binding.tvClickForDetail4.visibility = View.GONE
+//                binding.tvNotWon4.visibility = View.VISIBLE
+//            }
+//        }
+//    }
+//
+//    private fun setupEditText5(){
+//        if (binding.edPosition5.text.length==6){
+//            userLottery5 = viewModel.checkLottery(binding.edPosition5.text.toString(),CHECK_MULTI_MODE)
+//            if(userLottery5.totalMoneyReward!=0L){
+//
+//                binding.tvClickForDetail5.visibility = View.VISIBLE
+//                binding.tvNotWon5.visibility = View.GONE
+//            }else{
+//                binding.tvClickForDetail5.visibility = View.GONE
+//                binding.tvNotWon5.visibility = View.VISIBLE
+//            }
+//        }
+//    }
 
     private fun observePositionInSpinner(){
         viewModel.positionInSpinner.observe(viewLifecycleOwner, Observer {
@@ -267,11 +286,16 @@ class MultiCheckingANDNextDrawCheckingFragment : BottomSheetDialogFragment() {
 
         observeDrawDateListForSpinner()
 
-        setupEditText1()
-        setupEditText2()
-        setupEditText3()
-        setupEditText4()
-        setupEditText5()
+//        setupEditText1()
+//        setupEditText2()
+//        setupEditText3()
+//        setupEditText4()
+//        setupEditText5()
+        userLottery1 = setupEditGroup(binding.edPosition1,binding.tvNotWon1,binding.tvClickForDetail1)
+        userLottery2 = setupEditGroup(binding.edPosition2,binding.tvNotWon2,binding.tvClickForDetail2)
+        userLottery3 = setupEditGroup(binding.edPosition3,binding.tvNotWon3,binding.tvClickForDetail3)
+        userLottery4 = setupEditGroup(binding.edPosition4,binding.tvNotWon4,binding.tvClickForDetail4)
+        userLottery5 = setupEditGroup(binding.edPosition5,binding.tvNotWon5,binding.tvClickForDetail5)
         Timber.d("onStart")
 
     }

@@ -55,12 +55,13 @@ class MainViewModel @ViewModelInject constructor(
     private val _emptyLotteryResults = MutableLiveData<Event<String>>()
     val emptyLotteryResults : LiveData<Event<String>> = _emptyLotteryResults
 
+    val getAllLottery = repository.getAllLottery()
 
     init {
         getAllLotteryResult()
     }
 
-    val getAllLottery = repository.getAllLottery()
+
 
     val isEmptyResult = Transformations.map(allLotteryResult){
         it == emptyList<Lottery>()

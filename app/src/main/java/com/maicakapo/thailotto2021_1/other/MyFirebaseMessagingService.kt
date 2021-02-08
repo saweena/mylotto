@@ -50,11 +50,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 NotificationManagerCompat.from(this).notify(NOTIFICATION_ID,notification)
             }
         }
-    fun createNotificationChannel(){
+    private fun createNotificationChannel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(CHANNEL_ID,CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT)
             val manager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }
+    }
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Timber.d(token)
+
     }
     }

@@ -22,10 +22,12 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-class MyLotteryFragment @Inject constructor(@Named("userLottery") val userLotteryAdapter: UserLotteryAdapter) : Fragment() {
+class MyLotteryFragment @Inject constructor(
+    @Named("userLottery") val userLotteryAdapter: UserLotteryAdapter,
+    var viewModel : MainViewModel? = null) : Fragment() {
 
     lateinit var binding : FragmentMyLotteryBinding
-    lateinit var viewModel : MainViewModel
+    //lateinit var viewModel : MainViewModel
     //lateinit var userLotteryAdapter: UserLotteryAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +35,18 @@ class MyLotteryFragment @Inject constructor(@Named("userLottery") val userLotter
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_my_lottery,container,false)
-        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel = viewModel ?: ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         setupRecyclerview()
         observeAllUserLottery()
-        observeNavigateToWonLotteryFragment()
+       // observeNavigateToWonLotteryFragment()
+
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
         return binding.root
     }
 
     private fun observeAllUserLottery() {
-        viewModel.getAllLottery.observe(viewLifecycleOwner, Observer {
+        viewModel?.getAllLottery?.observe(viewLifecycleOwner, Observer {
             Timber.d(it.toString())
             userLotteryAdapter.addHeaderAndSubmitList(it)
         })
@@ -65,21 +68,23 @@ class MyLotteryFragment @Inject constructor(@Named("userLottery") val userLotter
 
         binding.rvUserLottery.layoutManager = manager
         userLotteryAdapter.setOnItemClickListener {
-            viewModel.navigateToCheckResult(it.lottery)
+           // viewModel.navigateToCheckResult(it.lottery)
+            findNavController().navigate(
+                MyLotteryFragmentDirections.actionMyLotteryFragmentToCheckingResultFragment(it.lottery))
         }
     }
 
-    private fun observeNavigateToWonLotteryFragment() {
-        viewModel.navigateToCheckingResultFragment.observe(viewLifecycleOwner, EventObserver {
-            it?.let {
-                findNavController().navigate(
-                    MyLotteryFragmentDirections.actionMyLotteryFragmentToCheckingResultFragment(it)
-
-                )
-
-            }
-        })
-    }
+//    private fun observeNavigateToWonLotteryFragment() {
+//        viewModel.navigateToCheckingResultFragment.observe(viewLifecycleOwner, EventObserver {
+//            it?.let {
+//                findNavController().navigate(
+//                    MyLotteryFragmentDirections.actionMyLotteryFragmentToCheckingResultFragment(it)
+//
+//                )
+//
+//            }
+//        })
+//    }
 
 
 }

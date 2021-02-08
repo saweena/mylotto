@@ -9,7 +9,9 @@ import com.maicakapo.thailotto2021_1.data.firestore.LotteryResult
 class FakeRepositoryAndroidTest : LotteryRepository{
 
     private val userLotteryItems = mutableListOf<Lottery>()
-    private val observeAllUserLottery = MutableLiveData<List<Lottery>>(userLotteryItems)
+
+    private val _allUserLottery = MutableLiveData<List<Lottery>>()
+    val allUserLottery : LiveData<List<Lottery>> = _allUserLottery
 
 
     private val allLotteryResult = MutableLiveData<List<LotteryResult>>()
@@ -20,12 +22,15 @@ class FakeRepositoryAndroidTest : LotteryRepository{
 
     private var shouldReturnDatabaseError = false
 
+    init {
+        refreshLiveData()
+    }
     fun setShouldReturnDatabaseError(value : Boolean){
         shouldReturnDatabaseError = value
     }
 
     private fun refreshLiveData(){
-        observeAllUserLottery.postValue(userLotteryItems)
+        _allUserLottery.postValue(userLotteryItems)
     }
 
     override suspend fun insertLottery(lottery: Lottery) {
@@ -39,7 +44,7 @@ class FakeRepositoryAndroidTest : LotteryRepository{
     }
 
     override fun getAllLottery(): LiveData<List<Lottery>> {
-        return observeAllUserLottery
+        return allUserLottery
     }
 
     override fun getAllLotteryResult(): LiveData<List<LotteryResult>> {
