@@ -15,13 +15,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.thailotto2021_1"
+        applicationId "com.maicakapo.thailotto2021_1"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.example.thailotto2021_1.HiltTestRunner"
+        testInstrumentationRunner "com.maicakapo.thailotto2021_1.HiltTestRunner"
     }
 
     buildTypes {

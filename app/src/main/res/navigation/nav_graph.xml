@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.HomeFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,11 +25,11 @@
     </fragment>
     <fragment
         android:id="@+id/previousResultFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.PreviousResultFragment.PreviousResultFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.PreviousResultFragment.PreviousResultFragment"
         android:label="PreviousResultFragment" />
     <fragment
         android:id="@+id/myLotteryFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.MyLotteryFragment.MyLotteryFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.MyLotteryFragment.MyLotteryFragment"
         android:label="fragment_my_lottery"
         tools:layout="@layout/fragment_my_lottery" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/qrCodeFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.QrCodeFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.QrCodeFragment"
         android:label="QrCodeFragment" >
         <action
             android:id="@+id/action_qrCodeFragment_to_checkingResultFragment"
@@ -48,15 +48,15 @@
     </fragment>
     <fragment
         android:id="@+id/checkingResultFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.CheckingResultFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.CheckingResultFragment"
         android:label="CheckingResultFragment" >
         <argument
             android:name="userLottery"
-            app:argType="com.example.thailotto2021_1.data.Lottery" />
+            app:argType="com.maicakapo.thailotto2021_1.data.Lottery" />
     </fragment>
     <fragment
         android:id="@+id/multiCheckingANDNextDrawCheckingFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.MultiCheckingANDNextDrawCheckingFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.MultiCheckingANDNextDrawCheckingFragment"
         android:label="MultiCheckingANDNextDrawCheckingFragment" >
         <action
             android:id="@+id/action_multiCheckingANDNextDrawCheckingFragment_to_checkingResultFragment"
@@ -67,6 +67,6 @@
     </fragment>
     <fragment
         android:id="@+id/trendingFragment"
-        android:name="com.example.thailotto2021_1.ui.fragment.TrendingFragment"
+        android:name="com.maicakapo.thailotto2021_1.ui.fragment.TrendingFragment"
         android:label="TrendingFragment" />
 </navigation>

@@ -140,7 +140,7 @@
 
                     <fragment
                         android:id="@+id/fm1"
-                        android:name="com.example.thailotto2021_1.ui.fragment.ShowLotteryResultFragment"
+                        android:name="com.maicakapo.thailotto2021_1.ui.fragment.ShowLotteryResultFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintBottom_toBottomOf="parent"

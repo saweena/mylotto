@@ -31,7 +31,7 @@
                 android:background="@color/green_200"
                 android:visibility="gone"/>
 
-            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
                 android:id="@+id/prize1st"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:paddingEnd="32dp"/>
 
 
-            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
                 android:id="@+id/prize2digit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:content_text="55">
 
 
-            </com.example.thailotto2021_1.ui.customview.LotteryCardView>
+            </com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView>
 
 
         <LinearLayout
@@ -57,12 +57,12 @@
             android:orientation="horizontal"
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
-            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
                 android:id="@+id/prizeFirst3digit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
-            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
                 android:id="@+id/prizeLast3digit"
                 android:layout_marginStart="8dp"
                 android:layout_width="0dp"
@@ -73,31 +73,31 @@
                 />
         </LinearLayout>
 
-            <com.example.thailotto2021_1.ui.customview.LotteryCardView
+            <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
                 android:id="@+id/prizeNearBy1st"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp"/>
 
-        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+        <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
             android:id="@+id/prize2rd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"/>
 
-        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+        <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
             android:id="@+id/prize3rd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"/>
 
-        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+        <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
             android:id="@+id/prize4rd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"/>
 
-        <com.example.thailotto2021_1.ui.customview.LotteryCardView
+        <com.maicakapo.thailotto2021_1.ui.customview.LotteryCardView
             android:id="@+id/prize5rd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
