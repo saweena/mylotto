@@ -16,7 +16,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4885778180675690~9877751603"/>
+            android:value="--MYADMOB--"/>
         <activity android:name="com.maicakapo.thailotto2021_1.ui.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
